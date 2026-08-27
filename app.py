@@ -16,7 +16,7 @@ if not firebase_admin._apps:
     cred = credentials.Certificate(kredensial_dict)
     firebase_admin.initialize_app(cred)
 
-st.success("Berhasil konek ke Firebase!")
+st.success("terkoneksi")
 
 # ============================================
 # 1. INISIALISASI FIREBASE ADMIN SDK
