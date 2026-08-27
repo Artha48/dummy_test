@@ -1,3 +1,4 @@
+import json
 import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -5,6 +6,17 @@ import pandas as pd
 import plotly.graph_objects as go
 
 st.set_page_config(page_title="Dashboard Dummy - Tenaga Ahli", layout="centered")
+
+# 1. Cek apakah firebase sudah jalan
+if not firebase_admin._apps:
+    # 2. Ambil string JSON dari secrets dan ubah jadi dictionary
+    kredensial_dict = json.loads(st.secrets["FIREBASE_JSON"])
+    
+    # 3. Masukkan ke Firebase
+    cred = credentials.Certificate(kredensial_dict)
+    firebase_admin.initialize_app(cred)
+
+st.success("Berhasil konek ke Firebase!")
 
 # ============================================
 # 1. INISIALISASI FIREBASE ADMIN SDK
