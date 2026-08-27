@@ -21,8 +21,7 @@ st.success("Berhasil konek ke Firebase!")
 # ============================================
 # 1. INISIALISASI FIREBASE ADMIN SDK
 # ============================================
-# Taruh file JSON service account di folder yang sama dengan app.py ini,
-# lalu ganti nama filenya di bawah sesuai file yang Anda download.
+
 if not firebase_admin._apps:
     cred = credentials.Certificate("serviceAccountKey.json")
     firebase_admin.initialize_app(cred)
@@ -30,12 +29,12 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 # ============================================
-# 2. AUTENTIKASI SEDERHANA (dummy dulu, bukan production-ready)
+# 2. AUTENTIKASI SEDERHANA 
 # ============================================
 st.title("Dashboard Skrining Kecemasan Sosial (Dummy)")
 
 password = st.text_input("Masukkan kode akses ahli", type="password")
-if password != "ahli333":   # ganti dengan kode akses Anda, nanti dipindah ke st.secrets
+if password != "ahli333":  
     st.warning("Masukkan kode akses yang benar untuk melanjutkan.")
     st.stop()
 
@@ -74,7 +73,7 @@ col1, col2 = st.columns(2)
 col1.metric("Total Skor Fear", int(total_fear))
 col2.metric("Total Skor Avoidance", int(total_avoidance))
 
-# Radar chart sederhana (dummy, baru 1 item jadi bentuknya masih kasar)
+# Radar chart sederhana
 fig = go.Figure(data=go.Scatterpolar(
     r=[total_fear, total_avoidance],
     theta=["Fear", "Avoidance"],
